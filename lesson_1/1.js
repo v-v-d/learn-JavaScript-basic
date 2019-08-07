@@ -5,7 +5,7 @@
 // Подсказка, расчёт идёт по формуле:
 // Tf = (9 / 5) * Tc + 32, где Tf – температура по Фаренгейту, Tc – температура по Цельсию.
 
-let Tc = parseFloat(prompt('Input celsius temperature:'));
-let Tf = (9 / 5) * Tc + 32;
+let tempC = parseFloat(prompt('Input celsius temperature:'));
+let tempF = (9 / 5) * tempC + 32;
 
-alert(`Fahrenheit temperature is ${Tf}`);
+alert(`Fahrenheit temperature is ${tempF}`);
