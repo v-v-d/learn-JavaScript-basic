@@ -8,4 +8,4 @@
 let tempC = parseFloat(prompt('Input celsius temperature:'));
 let tempF = (9 / 5) * tempC + 32;
 
-alert(`Fahrenheit temperature is ${tempF}`);
+alert(`Fahrenheit temperature is ${tempF.toFixed(2)}`);

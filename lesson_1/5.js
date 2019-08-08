@@ -19,16 +19,16 @@ let ticketNumber = parseInt(prompt('Input ticket number:'));
 let ticketNumberSum1 = null;
 let ticketNumberSum2 = null;
 
-while (ticketNumber) {
-    if (ticketNumber.toString().length > 3) {
+let counter = 1;
+while (counter <= 6) {
+    if (counter <= 3) {
         ticketNumberSum2 += ticketNumber % 10;
-        ticketNumber -= ticketNumber % 10;
-        ticketNumber /= 10;
+        ticketNumber = Math.floor(ticketNumber / 10);
     } else {
         ticketNumberSum1 += ticketNumber % 10;
-        ticketNumber -= ticketNumber % 10;
-        ticketNumber /= 10;
+        ticketNumber = Math.floor(ticketNumber / 10);
     }
+    counter++;
 }
 
 if (ticketNumberSum1 === ticketNumberSum2) {
