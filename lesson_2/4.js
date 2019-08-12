@@ -43,9 +43,12 @@ function myMultiplication(num1, num2) {
     return num1 * num2
 }
 
-let smthng1 = myAddition(10, 20);
-let smthng2 = mySubtraction(10, 20);
-let smthng3 = myDivision(10, 20);
-let smthng4 = myMultiplication(10, 20);
+let number1 = getRandInt(-100, 100);
+let number2 = getRandInt(-100, 100);
+
+let smthng1 = myAddition(number1, number2);
+let smthng2 = mySubtraction(number1, number2);
+let smthng3 = myDivision(number1, number2);
+let smthng4 = myMultiplication(number1, number2);
 
 console.log(smthng1, smthng2, smthng3, smthng4);
