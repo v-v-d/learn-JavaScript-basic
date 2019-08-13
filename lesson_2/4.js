@@ -5,8 +5,8 @@
 
 /**
  * Adds the num1 and num2
- * @param {number} num1
- * @param {number} num2
+ * @param {number} num1 1st operand
+ * @param {number} num2 2nd operand
  * @returns {number}
  */
 function myAddition(num1, num2) {
@@ -15,8 +15,8 @@ function myAddition(num1, num2) {
 
 /**
  * Subtracts num1 from num2
- * @param {number} num1
- * @param {number} num2
+ * @param {number} num1 1st operand
+ * @param {number} num2 2nd operand
  * @returns {number}
  */
 function mySubtraction(num1, num2) {
@@ -25,8 +25,8 @@ function mySubtraction(num1, num2) {
 
 /**
  * Divides the num1 by the num2
- * @param {number} num1
- * @param {number} num2
+ * @param {number} num1 1st operand
+ * @param {number} num2 2nd operand
  * @returns {number}
  */
 function myDivision(num1, num2) {
@@ -35,8 +35,8 @@ function myDivision(num1, num2) {
 
 /**
  * Multiplies the num1 by the num2
- * @param {number} num1
- * @param {number} num2
+ * @param {number} num1 1st operand
+ * @param {number} num2 2nd operand
  * @returns {number}
  */
 function myMultiplication(num1, num2) {
