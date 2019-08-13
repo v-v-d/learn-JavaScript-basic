@@ -8,3 +8,26 @@
 // соответствующее сообщение, в котором будет отображено это число, а также поставить
 // верное окончание в слове "рубль". Для получения верного склонения слова (любого слова с
 // числом) вам необходимо создать функцию.
+'use strict';
+
+/**
+ * Check the last digit from passed amount of money argument and returns the name of the currency with the correct declension.
+ * @param {number} money
+ * @returns {string} The name of the currency with the correct declension
+ */
+function getCurrencyWordRU(money) {
+    let lastDigit = money % 10;
+    let currencyWord = 'рублей';
+
+    if (lastDigit === 1) {
+        currencyWord = 'рубль'
+    } else if (lastDigit > 1 && lastDigit < 5) {
+        currencyWord = 'рубля'
+    }
+
+    return currencyWord
+}
+
+let moneyAmount = parseInt(prompt('Пожалуйста, введите сумму, которую вы хотите зачислить на свой счет'));
+
+alert(`Ваша сумма в ${moneyAmount} ${getCurrencyWordRU(moneyAmount)} успешно зачислена.`);
