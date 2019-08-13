@@ -30,7 +30,11 @@ function mySubtraction(num1, num2) {
  * @returns {number}
  */
 function myDivision(num1, num2) {
-    return num1 / num2
+    if (num2 !== 0) {
+        return num1 / num2
+    } else {
+        return null
+    }
 }
 
 /**
