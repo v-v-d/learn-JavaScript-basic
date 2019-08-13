@@ -8,3 +8,19 @@
 // …
 // 10 – четное число
 // ```
+'use strict';
+
+let i = 0;
+do {
+    let condition = 'нечетное число';
+
+    if (i === 0) {
+        condition = 'это ноль'
+    } else if (i % 2 === 0) {
+        condition = 'четное число'
+    }
+
+    console.log(`${i} - ${condition}`);
+
+    i++;
+} while (i <= 10);
