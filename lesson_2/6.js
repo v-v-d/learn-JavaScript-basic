@@ -17,9 +17,12 @@
  */
 function getCurrencyWordRU(money) {
     let lastDigit = money % 10;
+    let last2Digits = money % 100;
     let currencyWord = 'рублей';
 
-    if (lastDigit === 1) {
+    if (last2Digits > 4 && last2Digits < 21) {
+        currencyWord = 'рублей'
+    } else if (lastDigit === 1) {
         currencyWord = 'рубль'
     } else if (lastDigit > 1 && lastDigit < 5) {
         currencyWord = 'рубля'
