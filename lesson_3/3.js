@@ -8,3 +8,8 @@
 // xxxxxxx
 // xxxxxxxxx
 // ```
+'use strict';
+
+for (let i = 0, j = 'x'; i < 20; i++, j += 'xx') {
+    console.log(`${j}`)
+}
