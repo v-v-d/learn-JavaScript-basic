@@ -2,6 +2,11 @@
 // (можно без оптимизаций).
 'use strict';
 
+/**
+ * Return true if number is prime
+ * @param num number for check for prime
+ * @returns {boolean}
+ */
 function isPrimeNumber(num) {
     for (let i = 2; i <= Math.round(num ** 0.5 + 1.2); i++) {
         if (num % i === 0) {
@@ -11,6 +16,10 @@ function isPrimeNumber(num) {
     return true
 }
 
+/**
+ * Displays a list of primes to entered number via console.log
+ * @param {number} toNumber Primes will be displayed up to this number
+ */
 function getPrimeNumber(toNumber) {
     if (toNumber <= 1) {
         return
