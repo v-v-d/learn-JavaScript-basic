@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+  <style>
+    .test-form {
+      max-width: 700px;
+      margin: 50px auto auto auto;
+    }
+    .form-row {
+      height: 80px;
+    }
+    /*.invalid-feedback {*/
+    /*  display: block;*/
+    /*}*/
+  </style>
+</head>
+<body>
+<form class="test-form">
+  <div class="form-row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Name">
+      <div class="message"></div>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Phone">
+      <div class="message"></div>
+    </div>
+  </div>
+  <div class="form-row">
+      <div class="col">
+      <input type="password" id="password" class="form-control" placeholder="Password">
+      <div class="message"></div>
+    </div>
+    <div class="col">
+      <input type="password" class="form-control" placeholder="Confirm password">
+      <div class="message"></div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<script src="3.js"></script>
+</body>
+</html>
