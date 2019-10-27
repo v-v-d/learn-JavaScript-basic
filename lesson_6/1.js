@@ -24,6 +24,7 @@ const gallery = {
     openedImageScreenClass: 'galleryWrapper__screen',
     openedImageCloseBtnClass: 'galleryWrapper__close',
     openedImageCloseBtnSrc: 'images/gallery/close.png',
+    defaultImageSrc: 'images/gallery/default.png',
   },
 
   /**
@@ -106,6 +107,9 @@ const gallery = {
     const image = new Image();
     image.classList.add(this.settings.openedImageClass);
     galleryWrapperElement.appendChild(image);
+
+    // Если большой картинки нет, то показываем дефолтную картинку
+    image.addEventListener('error', () => this.openImage(this.settings.defaultImageSrc));
 
     // Добавляем контейнер-обертку в тег body.
     document.body.appendChild(galleryWrapperElement);
