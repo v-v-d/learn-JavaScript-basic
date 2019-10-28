@@ -187,10 +187,7 @@ const gallery = {
    * @return {boolean} True, если картинки одинаковые, иначе False.
    */
   isCurrentImage(event, img) {
-    let currentImg = event.target.parentElement.getElementsByClassName(this.settings.openedImageClass)[0];
-    let currentImgSrc = currentImg.attributes[1].nodeValue;
-
-    return img.dataset.full_image_url === currentImgSrc
+    return img.dataset.full_image_url === this.getCurrentImage(event)
   },
 
   /**
@@ -199,12 +196,10 @@ const gallery = {
    * @return {boolean} True, если картинка последняя в галерее, иначе False.
    */
   isLastImage(event) {
-    let currentImg = event.target.parentElement.getElementsByClassName(this.settings.openedImageClass)[0];
-    let currentImgSrc = currentImg.attributes[1].nodeValue;
     let images = document.querySelector(this.settings.previewSelector).getElementsByTagName('img');
     let lastImageSrc = images[images.length - 1].dataset.full_image_url;
 
-    return currentImgSrc === lastImageSrc
+    return this.getCurrentImage(event) === lastImageSrc
   },
 
   /**
@@ -213,12 +208,14 @@ const gallery = {
    * @return {boolean} True, если картинка первая в галерее, иначе False.
    */
   isFirstImage(event) {
-    let currentImg = event.target.parentElement.getElementsByClassName(this.settings.openedImageClass)[0];
-    let currentImgSrc = currentImg.attributes[1].nodeValue;
     let images = document.querySelector(this.settings.previewSelector).getElementsByTagName('img');
     let firstImageSrc = images[0].dataset.full_image_url;
 
-    return currentImgSrc === firstImageSrc
+    return this.getCurrentImage(event) === firstImageSrc
+  },
+
+  getCurrentImage(event) {
+    return event.target.parentElement.getElementsByClassName(this.settings.openedImageClass)[0].attributes[1].nodeValue;
   },
 
   /**
