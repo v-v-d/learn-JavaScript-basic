@@ -96,6 +96,14 @@ const gallery = {
     galleryScreenElement.classList.add(this.settings.openedImageScreenClass);
     galleryWrapperElement.appendChild(galleryScreenElement);
 
+    const backArrow = document.createElement('i');
+    backArrow.classList.add('fas', 'fa-chevron-left', 'back-arrow');
+    galleryWrapperElement.appendChild(backArrow);
+
+    const forwardArrow = document.createElement('i');
+    forwardArrow.classList.add('fas', 'fa-chevron-right', 'forward-arrow');
+    galleryWrapperElement.appendChild(forwardArrow);
+
     // Создаем картинку для кнопки закрыть, ставим класс, src и добавляем ее в контейнер-обертку.
     const closeImageElement = new Image();
     closeImageElement.classList.add(this.settings.openedImageCloseBtnClass);
