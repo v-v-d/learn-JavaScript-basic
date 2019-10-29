@@ -275,6 +275,14 @@ const snake = {
   setDirection(direction) {
     this.direction = direction;
   },
+
+  /**
+   * Возвращает кол-во съеденной еды змейкой.
+   * @return {number} Кол-во съеденной еды змейкой.
+   */
+  getEatenFoodCount() {
+    return this.body.length - 1;
+  },
 };
 
 /**
@@ -519,6 +527,7 @@ const game = {
    */
   render() {
     this.map.render(this.snake.getBody(), this.food.getCoordinates());
+    this.setCounter();
   },
 
   /**
@@ -640,6 +649,15 @@ const game = {
       nextHeadPoint.x >= 0 &&
       nextHeadPoint.y >= 0;
   },
+
+  /**
+   * Меняем счетчик съеденной змейкой еды.
+   */
+  setCounter() {
+    let count = this.snake.getEatenFoodCount();
+    const gameCounter = document.getElementById('counter');
+    gameCounter.textContent = count;
+  }
 };
 
 // При загрузке страницы инициализируем игру.

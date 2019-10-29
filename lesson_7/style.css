@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     background: #2e353d;
+    overflow: hidden;
 }
 .menuButton{
     width: 150px;
@@ -17,7 +18,7 @@
 }
 #game{
     border-collapse: collapse;
-    margin: 2% auto 0;
+    margin: 1% auto 0;
 }
 #menu{
     display: flex;
@@ -43,4 +44,10 @@ td.cell{
 }
 .disabled:hover{
     background: #7c7c7c;
+}
+.game-counter {
+    font-size: 1.5em;
+    color: forestgreen;
+    text-align: center;
+    margin: 1% auto 0;
 }
