@@ -18,6 +18,7 @@ const settings = {
   colsCount: 21,
   speed: 2,
   winFoodCount: 50,
+  isFieldIsUnlimited: false,
 };
 
 /**
@@ -64,6 +65,10 @@ const config = {
     return this.settings.winFoodCount;
   },
 
+  isFieldIsUnlimited() {
+    return this.settings.isFieldIsUnlimited;
+  },
+
   /**
    * Проверка значений настроек игры.
    * @returns {{isValid: boolean, errors: Array}} Результат валидации в виде объекта с ошибками.
@@ -97,6 +102,11 @@ const config = {
     if (this.settings.winFoodCount < 5 || this.settings.winFoodCount > 50) {
       result.isValid = false;
       result.errors.push('Неверные настройки, значение winLength должно быть в диапазоне [5, 50].');
+    }
+
+    if (typeof this.settings.isFieldIsUnlimited !== "boolean") {
+      result.isValid = false;
+      result.errors.push('Неверные настройки, значение isFieldIsUnlimited должно быть либо true либо false.');
     }
 
     return result;
@@ -182,6 +192,8 @@ const map = {
  * @property {string} lastStepDirection Направление, куда сходила змейка прошлый раз.
  */
 const snake = {
+  config,
+
   body: null,
   direction: null,
   lastStepDirection: null,
@@ -255,16 +267,43 @@ const snake = {
   getNextStepHeadPoint() {
     // Получаем в отдельную переменную голову змейки.
     const firstPoint = this.body[0];
-    // Возвращаем точку, где окажется голова змейки в зависимости от направления.
+    // Если в настройках isFieldIsUnlimited = true, то заходим в if.
+    if (this.config.isFieldIsUnlimited()) {
+      // Если уперлись в стену, возвращаем точку на противоположной стене.
+      switch (true) {
+        case this.direction === 'up' && firstPoint.y === 0:
+          return {x: firstPoint.x, y: this.config.getRowsCount() - 1};
+        case this.direction === 'right' && firstPoint.x === this.config.getColsCount() - 1:
+          return {x: 0, y: firstPoint.y};
+        case this.direction === 'down' && firstPoint.y === this.config.getRowsCount() - 1:
+          return {x: firstPoint.x, y: 0};
+        case this.direction === 'left' && firstPoint.x === 0:
+          return {x: this.config.getColsCount() - 1, y: firstPoint.y};
+      }
+
+      // Если не уперлись, то возвращаем точку, где окажется голова змейки в зависимости от направления.
+      return this.getDefaultNextStepHeadPoint(firstPoint);
+    } else {
+      // Возвращаем точку, где окажется голова змейки в зависимости от направления.
+      return this.getDefaultNextStepHeadPoint(firstPoint);
+    }
+  },
+
+  /**
+   * Отдает точку, где будет голова змейки если она сделает шаг при условии, что змейка двигается в пределах поля.
+   * @param {{x: int, y: int}} headPoint Точка с координатами головы змейки.
+   * @return {{x: int, y: int}} Следующая точка куда придет змейка сделав шаг.
+   */
+  getDefaultNextStepHeadPoint(headPoint) {
     switch (this.direction) {
       case 'up':
-        return {x: firstPoint.x, y: firstPoint.y - 1};
+        return {x: headPoint.x, y: headPoint.y - 1};
       case 'right':
-        return {x: firstPoint.x + 1, y: firstPoint.y};
+        return {x: headPoint.x + 1, y: headPoint.y};
       case 'down':
-        return {x: firstPoint.x, y: firstPoint.y + 1};
+        return {x: headPoint.x, y: headPoint.y + 1};
       case 'left':
-        return {x: firstPoint.x - 1, y: firstPoint.y};
+        return {x: headPoint.x - 1, y: headPoint.y};
     }
   },
 
@@ -642,12 +681,18 @@ const game = {
   canMakeStep() {
     // Получаем следующую точку головы змейки в соответствии с текущим направлением.
     const nextHeadPoint = this.snake.getNextStepHeadPoint();
-    // Змейка может сделать шаг если следующая точка не на теле змейки и точка внутри игрового поля.
-    return !this.snake.isOnPoint(nextHeadPoint) &&
-      nextHeadPoint.x < this.config.getColsCount() &&
-      nextHeadPoint.y < this.config.getRowsCount() &&
-      nextHeadPoint.x >= 0 &&
-      nextHeadPoint.y >= 0;
+    // Если в настройках isFieldIsUnlimited = true, то
+    if (this.config.isFieldIsUnlimited()) {
+      // Змейка может сделать шаг если следующая точка не на теле змейки.
+      return !this.snake.isOnPoint(nextHeadPoint)
+    } else {
+      // Иначе змейка может сделать шаг если следующая точка не на теле змейки и точка внутри игрового поля.
+      return !this.snake.isOnPoint(nextHeadPoint) &&
+        nextHeadPoint.x < this.config.getColsCount() &&
+        nextHeadPoint.y < this.config.getRowsCount() &&
+        nextHeadPoint.x >= 0 &&
+        nextHeadPoint.y >= 0;
+    }
   },
 
   /**
@@ -661,4 +706,4 @@ const game = {
 };
 
 // При загрузке страницы инициализируем игру.
-window.onload = game.init({speed: 5});
+window.onload = game.init({speed: 5, isFieldIsUnlimited: true});
